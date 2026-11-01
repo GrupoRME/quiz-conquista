@@ -60,3 +60,11 @@ Resumo; detalhes em `QUIZ_AUDIT.md`:
 - Telemetria (`event.fx2.io`), pixel, geolocalização por IP, verificação de e-mail já cadastrado: não reproduzidos.
 - Páginas legais (`/terms`, `/privacy`, `/subterms`) abrem no site original, que só as publica em inglês.
 - Animação Lottie da raspadinha e animações do gráfico de plano: quadro estático / CSS.
+
+## Pendências
+
+- [ ] Deixar a oferta do caminho "Casado" igual à referência (hoje o card Status mostra "Complicado" e a copy foi ajustada à mão; revisar textos como "Reinicie a dinâmica" e "Ela te deseja de novo", que não fazem sentido para quem é casado).
+- [ ] Definir os planos e preços da oferta (hoje são os da captura: 12, 4 e 24 semanas, em R$; valores com ponto decimal, como "R$5.44", ainda sem formatação pt-BR).
+- [ ] Aplicar a formatação do nome (primeira letra maiúscula) em todas as telas que exibem o nome. Hoje só a tela de pré-oferta formata; a oferta e o código promocional mostram o nome como foi digitado.
+- [ ] Configurar o checkout em modo de teste (o checkout não faz parte desta reprodução; "Obter meu plano" só rola até os planos).
+- [ ] Revisar os depoimentos/avaliações antes de publicar (nomes, datas fixas como "20 de Junho de 2026" e textos vêm da captura).
