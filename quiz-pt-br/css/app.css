@@ -1,0 +1,45 @@
+/* Loader global (inline <style> do index.html original) */
+.global-loader{z-index:9999;background-color:#fff;justify-content:center;align-items:center;width:100%;height:100%;display:flex;position:fixed;top:0;left:0}
+.global-loader img{-o-object-fit:contain;object-fit:contain;width:50px;height:50px;animation:2s ease-in-out infinite global-loader-scale}
+@keyframes global-loader-scale{0%{transform:scale(1)}50%{transform:scale(1.2)}to{transform:scale(1)}}
+.global-loader[hidden]{display:none}
+/* Ajustes do motor em JS puro (substitui comportamentos que no original vinham do runtime do framework) */
+
+/* Telas de mensagem (título + texto curto + imagem): padrão único, centralizado */
+main[data-msg] > div { align-items: center; text-align: center; }
+main[data-msg] h1 { margin-bottom: 8px; }
+main[data-msg] h1 p, main[data-msg] > div > p, main[data-msg] > div > p p { text-align: center !important; margin: 0; }
+main[data-msg] > div > p { width: 100%; max-width: 100%; font-size: 14px; line-height: 1.55; color: #2b2b2b; margin-bottom: 24px; text-wrap: balance; }
+main[data-msg] > div > p p { text-wrap: balance; }
+/* "Pode contar com a gente!" em uma única linha, em qualquer largura */
+main[data-msg][data-oneline] h1, main[data-msg][data-oneline] h1 p { white-space: nowrap; }
+main[data-msg][data-oneline] h1 { font-size: clamp(20px, 6.4vw, 24px) !important; }
+
+/* Múltipla escolha: o marcador circular acompanha o MESMO estado do cartão (.selected, o que já muda a borda).
+   Selecionado = círculo dourado preenchido com check branco; desmarcado = só o contorno cinza.
+   (No original esse efeito vinha de uma classe "--active" separada, que o motor em JS puro não aplicava.) */
+.tile.selected .check-icon { border-color: rgb(var(--token-warning-500)); background-color: rgb(var(--token-warning-500)); }
+.tile.selected .check-icon .icon { color: rgb(var(--token-warning-500)); }
+
+/* Carrossel de depoimentos (tela de carregamento): rolagem horizontal nativa com encaixe */
+.splide.reviews-carousel { width: 100%; max-width: 100%; min-width: 0; overflow: hidden; visibility: visible; }
+.reviews-carousel .splide__track {
+  overflow-x: auto; overflow-y: hidden;
+  scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain; touch-action: pan-x pan-y;
+  scrollbar-width: none; -ms-overflow-style: none; cursor: grab;
+}
+.reviews-carousel .splide__track::-webkit-scrollbar { display: none; }
+.reviews-carousel .splide__track.is-dragging { cursor: grabbing; user-select: none; }
+.reviews-carousel .splide__list { display: flex; gap: 12px; transform: none !important; transition: none; width: 100%; }
+/* espaçadores: centralizam o 1º e o último cartão; cada cartão ocupa 80% e o vizinho aparece na lateral */
+.reviews-carousel .splide__list::before, .reviews-carousel .splide__list::after { content: ""; flex: 0 0 calc(10% - 12px); }
+.reviews-carousel .splide__slide { flex: 0 0 80%; width: 80%; max-width: 320px; margin: 0; scroll-snap-align: center; scroll-snap-stop: always; text-align: left; }
+.reviews-dots { display: flex; justify-content: center; gap: 8px; padding: 14px 0 4px; }
+.reviews-dot { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 9999px; background: #d9d9d9; cursor: pointer; transition: background-color .2s, transform .2s; }
+.reviews-dot.is-active { background: rgb(155, 124, 80); transform: scale(1.25); }
+
+/* Raspadinha: o dedo raspa sem rolar a página; a camada some com transição suave ao revelar */
+.scratch-target, .scratch-target canvas.sc__canvas { touch-action: none; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
+canvas.sc__canvas { transition: opacity .35s ease; }
+canvas.sc__canvas.is-revealed { opacity: 0; }

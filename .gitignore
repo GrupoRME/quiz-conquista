@@ -1,0 +1,8 @@
+# capturas de tela e artefatos de teste (não fazem parte do projeto)
+.playwright-mcp/
+/*.png
+/_src/*.png
+node_modules/
+Thumbs.db
+desktop.ini
+.DS_Store
